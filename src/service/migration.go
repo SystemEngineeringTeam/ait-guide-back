@@ -24,7 +24,7 @@ func readCsv(filename string) ([][]string, error) {
 }
 
 func Migration(yymmdd string) {
-	records, _ := readCsv("data/points" + yymmdd + ".csv")
+	records, _ := readCsv("../data/point/point.csv")
 	locations := model.GetAllPoints()
 	if locations == nil {
 		for _, v := range records {
