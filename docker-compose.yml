@@ -1,0 +1,32 @@
+version: "3"
+services:
+  mysql:
+    container_name: guid_db
+    image: mysql:8
+    volumes:
+      - ./docker/mysql/mysqld_charset.cnf:/etc/mysql/conf.d/my.cnf
+    ports:
+      - "3309:3309"
+    expose:
+      - 3309
+    environment:
+      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_DATABASE: aitguid
+      MYSQL_TCP_PORT: 3309
+
+  # neo4j:
+  #   container_name: guid_neo4j
+  #   image: neo4j:latest
+  #   restart: always
+  #   ports:
+  #     - 57474:7474
+  #     - 57687:7687
+  #   volumes:
+  #     - ./Docker/neo4j/volumes/data:/data
+  #     - ./Docker/neo4j/volumes/logs:/logs
+  #     - ./Docker/neo4j/volumes/conf:/conf
+  #     - ./Docker/neo4j/volumes/import:/import
+  #     - ./Docker/neo4j/volumes/script:/script
+  #   environment:
+  #     - NEO4J_AUTH=neo4j/admin
+  #     - EXTENSION_SCRIPT=/script/import_data.sh
