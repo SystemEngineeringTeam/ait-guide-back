@@ -11,7 +11,7 @@ import (
 )
 
 type Response struct {
-	Route []service.Coordinate `json:"route"`
+	Route []*service.Coordinate `json:"route"`
 }
 
 func ApiHandler() {
@@ -56,7 +56,8 @@ func ApiHandler() {
 		end := c.Query("end")
 
 		route := service.GetShortestDistanceFromCurrentLocation(lat, lng, end)
-		c.JSON(200, route)
+		response := Response{Route: route}
+		c.JSON(200, response)
 	})
 
 	r.Run()
