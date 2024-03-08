@@ -28,5 +28,5 @@ services:
       - ./data:/import
       - ./docker/neo4j/volumes/script:/script
     environment:
-      - NEO4J_AUTH=neo4j/admin
+      - NEO4J_AUTH=neo4j/madeintokyo
       - EXTENSION_SCRIPT=/script/import_data.sh
