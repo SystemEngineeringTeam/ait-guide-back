@@ -1,7 +1,7 @@
 version: "3"
 services:
   mysql:
-    container_name: guid_db
+    container_name: guide_db
     image: mysql:8
     volumes:
       - ./docker/mysql/mysqld_charset.cnf:/etc/mysql/conf.d/my.cnf
@@ -11,11 +11,11 @@ services:
       - 3309
     environment:
       MYSQL_ROOT_PASSWORD: admin
-      MYSQL_DATABASE: aitguid
+      MYSQL_DATABASE: aitguide
       MYSQL_TCP_PORT: 3309
 
   neo4j:
-    container_name: guid_neo4j
+    container_name: guide_neo4j
     image: neo4j:5.17.0
     restart: always
     ports:
