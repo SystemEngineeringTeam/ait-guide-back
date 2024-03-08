@@ -58,7 +58,7 @@ func GetClosestPoint(lat, lng string) int {
 	var distance float64
 	q := `
 		SELECT
-			id, point_id, ST_Distance(location, ST_GeomFromText('POINT(` + lat + " " + lng + `)', 4326)) AS distance
+			id, point_id, ST_Distance(location, ST_GeomFromText('POINT(` + lng + " " + lat + `)', 4326)) AS distance
 		FROM
 			points
 		ORDER BY
@@ -86,7 +86,7 @@ func InsertPoint(point_id, lat, lng string) {
 			points (point_id, location)
 		VALUES (
 			` + point_id + `,
-			ST_GeomFromText('POINT(` + lat + " " + lng + `)', 4326)
+			ST_GeomFromText('POINT(` + lng + " " + lat + `)', 4326)
 		);
 	`
 	if _, err := db.Query(q); err != nil {
