@@ -1,1 +1,5 @@
-*.csv
+data/done
+
+docker/neo4j/volumes/conf
+docker/neo4j/volumes/data
+docker/neo4j/volumes/logs
