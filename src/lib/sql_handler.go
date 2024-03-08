@@ -5,17 +5,15 @@ import (
 	"fmt"
 	"time"
 
+	conf "github.com/SystemEngineeringTeam/ait-guide-back/conf"
 	_ "github.com/go-sql-driver/mysql"
-	// _ "github.com/go-sql-driver/mysql"
-	// "github.com/kajiLabTeam/dx-waiting-time/conf"
 )
 
 func SqlConnect() (database *sql.DB) {
 	var err error
 	var db *sql.DB
-	// c := conf.GetMysqlConfig()
-	// dsn := c.GetString("mysql.user") + ":" + c.GetString("mysql.password") + "@" + c.GetString("mysql.protocol") + "/" + c.GetString("mysql.dbname") + "?charset=utf8&parseTime=true&loc=Asia%2FTokyo"
-	dsn := "root:admin@tcp(localhost:3309)/aitguid?charset=utf8&parseTime=true&loc=Asia%2FTokyo"
+	c := conf.GetMysqlConfig()
+	dsn := c.GetString("mysql.user") + ":" + c.GetString("mysql.password") + "@" + c.GetString("mysql.protocol") + "/" + c.GetString("mysql.dbname") + "?charset=utf8&parseTime=true&loc=Asia%2FTokyo"
 
 	if db, err = sql.Open("mysql", dsn); err != nil {
 		db = connect(dsn, 10)
