@@ -16,12 +16,21 @@ echo "delete database finished."
 
 # CSVデータのインポート
 echo "Start the data import process"
-neo4j-admin import \
-  --nodes=/import/point/point.csv \
-  --relationships=/import/route/route.csv
+neo4j-admin database import full\
+  --nodes=/import/point.csv \
+  --relationships=/import/route.csv \
+  neo4j
 echo "Complete the data import process"
 
 # import処理の完了フラグファイルの作成
 echo "Start creating flag file"
 touch /import/done
 echo "Complete creating flag file"
+
+# EXTENSION_SCRIPTはroot権限で実行されるため、本スクリプトを実行すると、
+# /dataと/logsの所有者がrootになってしまうので、所有者をneo4jに変更。
+# 所有者を変更しないとNeo4jが起動できません。
+echo "Start ownership change"
+chown -R neo4j:neo4j /data
+chown -R neo4j:neo4j /logs
+echo "Complete ownership change"
