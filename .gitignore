@@ -7,3 +7,5 @@ docker/neo4j/volumes/logs
 .DS_Store
 
 src/conf/environments/
+
+server.log
