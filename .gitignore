@@ -9,3 +9,5 @@ docker/neo4j/volumes/logs
 src/conf/environments/
 
 server.log
+
+*.png
