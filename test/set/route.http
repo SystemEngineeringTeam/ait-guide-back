@@ -1,0 +1,7 @@
+@userUrl = https://aitguide-back.sysken.net/api/get/route
+@lat = 35.18186301683754
+@lng = 137.1096056699753
+@facilityID = 1
+
+### 最短のルートを取得する
+GET {{userUrl}}?lat={{lat}}&lng={{lng}}&end={{facilityID}}

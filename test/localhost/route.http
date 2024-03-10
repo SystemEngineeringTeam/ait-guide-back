@@ -1,0 +1,7 @@
+@userUrl = http://localhost:8080/api/get/route
+@lat = 35.18440159426650
+@lng = 137.11136519908900
+@facilityID = 22
+
+### 最短のルートを取得する
+GET {{userUrl}}?lat={{lat}}&lng={{lng}}&end={{facilityID}}
