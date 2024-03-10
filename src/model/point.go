@@ -73,7 +73,6 @@ func GetClosestPoint(lat, lng string) int {
 		defer rows.Close()
 		for rows.Next() {
 			rows.Scan(&id, &point_id, &distance)
-			fmt.Println(id, point_id, distance)
 		}
 	}
 	// fmt.Println(id)
