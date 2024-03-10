@@ -21,7 +21,7 @@ func FindShortestRoute(ctx context.Context, fr, to string) []*Coordinate {
 	var c []*Coordinate
 	var cyp = `
 		MATCH (from:Point {pointId: $fr}), (to:Point {pointId: $to}),
-			path=allShortestPaths ((from)-[distance:Distance*]->(to))
+			path=shortestPath ((from)-[distance:Distance*]-(to))
 		WITH
 			[point in nodes(path) | point.lat] as lat,
 			[point in nodes(path) | point.lng] as lng,
