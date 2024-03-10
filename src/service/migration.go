@@ -2,6 +2,7 @@ package service
 
 import (
 	"encoding/csv"
+	"fmt"
 	"log"
 	"os"
 
@@ -27,7 +28,10 @@ func Migration() {
 	records, _ := readCsv("../data/point.csv")
 	locations := model.GetAllPoints()
 	if locations == nil {
-		for _, v := range records {
+		for i, v := range records {
+			if i == 0 {
+				continue
+			}
 			model.InsertPoint(v[0], v[1], v[2])
 		}
 	}
