@@ -88,7 +88,7 @@ func InsertPoint(point_id, lat, lng string) {
 			ST_GeomFromText('POINT(` + lat + " " + lng + `)', 4326)
 		);
 	`
-	if _, err := db.Query(q); err != nil {
+	if _, err := db.Exec(q); err != nil {
 		log.Println(err)
 	}
 }
