@@ -32,6 +32,7 @@ func Migration() {
 			if i == 0 {
 				continue
 			}
+			fmt.Println(i, "/", len(records)-1)
 			model.InsertPoint(v[0], v[1], v[2])
 		}
 	}
