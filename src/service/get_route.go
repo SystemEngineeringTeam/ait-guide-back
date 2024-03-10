@@ -16,7 +16,6 @@ type Coordinate struct {
 
 func FindShortestRoute(ctx context.Context, fr, to string) []*Coordinate {
 	ses := dr.NewSession(ctx, neo4j.SessionConfig{DatabaseName: "neo4j"})
-	defer dr.Close(ctx)
 	defer ses.Close(ctx)
 	var c []*Coordinate
 	var cyp = `
