@@ -20,7 +20,7 @@ services:
     restart: always
     ports:
       - 57474:7474
-      - 57687:7687
+      - 7687:7687
     volumes:
       - ./docker/neo4j/volumes/data:/data
       - ./docker/neo4j/volumes/logs:/logs
@@ -30,3 +30,18 @@ services:
     environment:
       - NEO4J_AUTH=neo4j/madeintokyo
       - EXTENSION_SCRIPT=/script/import_data.sh
+    depends_on:
+      - "mysql"
+
+  api:
+      container_name: guide_api
+      image: golang:1.21.6
+      stdin_open: true
+      tty: true
+      volumes:
+        - ./src:/root/src
+        - ./data:/root/data
+      ports:
+        - 8080:8080
+      depends_on:
+        - "neo4j"
