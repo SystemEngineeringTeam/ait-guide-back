@@ -1,6 +1,6 @@
 module github.com/SystemEngineeringTeam/ait-guide-back
 
-go 1.21.6
+go 1.18.1
 
 require (
 	github.com/gin-contrib/cors v1.6.0
