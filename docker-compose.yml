@@ -30,6 +30,7 @@ services:
     environment:
       - NEO4J_AUTH=neo4j/madeintokyo
       - EXTENSION_SCRIPT=/script/import_data.sh
+      - NEO4J_PLUGINS=["graph-data-science"]
     depends_on:
       - "mysql"
 
