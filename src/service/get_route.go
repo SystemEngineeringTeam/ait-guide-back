@@ -19,15 +19,17 @@ func FindShortestRoute(ctx context.Context, fr, to string) []*Coordinate {
 	defer ses.Close(ctx)
 	var c []*Coordinate
 	var cyp = `
-		MATCH (from:Point {pointId: $fr}), (to:Point {pointId: $to}),
-			path=shortestPath ((from)-[distance:Distance*]-(to))
+		MATCH (from:Point {pointId: $fr}), (to:Point {pointId: $to})
+		CALL gds.shortestPath.dijkstra.stream('myGraph', {
+			sourceNode: from,
+			targetNode: to,
+			relationshipWeightProperty: 'cost'
+		})
+		YIELD path
 		WITH
 			[point in nodes(path) | point.lat] as lat,
-			[point in nodes(path) | point.lng] as lng,
-		REDUCE(totalMinutes = 0, d in distance | totalMinutes + d.cost) as Distance
+			[point in nodes(path) | point.lng] as lng
 		RETURN lat, lng
-		ORDER BY Distance
-		LIMIT 1;
 	`
 	route, _ := ses.ExecuteRead(ctx, func(tx neo4j.ManagedTransaction) (any, error) {
 		result, _ := tx.Run(ctx, cyp, map[string]any{"fr": fr, "to": to})

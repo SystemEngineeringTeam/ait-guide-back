@@ -1,6 +1,7 @@
 package service
 
 import (
+	"context"
 	"encoding/csv"
 	"fmt"
 	"log"
@@ -35,5 +36,6 @@ func Migration() {
 			fmt.Println(i, "/", len(records)-1)
 			model.InsertPoint(v[0], v[1], v[2])
 		}
+		CreateGraph(context.Background(), "Point", "Distance")
 	}
 }
