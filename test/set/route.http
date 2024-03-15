@@ -1,4 +1,4 @@
-@userUrl = https://aitguide-back.sysken.net/api/get/route
+@userUrl = https://ait-guide-back.sysken.net/api/get/route
 @lat = 35.18186301683754
 @lng = 137.1096056699753
 @facilityID = 1
