@@ -92,3 +92,27 @@ func InsertPoint(point_id, lat, lng string) {
 		log.Println(err)
 	}
 }
+
+func GetPoint(point_id int) orb.Point {
+	var location orb.Point
+	q := `
+		SELECT
+			ST_AsBinary(location)
+		FROM
+			points
+		WHERE
+			point_id = ` + fmt.Sprint(point_id) + `
+		;
+	`
+	// fmt.Println(q)
+	if rows, err := db.Query(q); err != nil {
+		fmt.Println(err)
+	} else {
+		defer rows.Close()
+		for rows.Next() {
+			rows.Scan(ewkb.Scanner(&location))
+		}
+	}
+	// fmt.Println(id)
+	return location
+}
