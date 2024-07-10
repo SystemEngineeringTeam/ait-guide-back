@@ -17,7 +17,7 @@ type Response struct {
 func ApiHandler() {
 	// サーバーログの出力先を設定
 	gin.DisableConsoleColor()
-	f, _ := os.Create("../server.log")
+	f, _ := os.Create("../log/server.log")
 	gin.DefaultWriter = io.MultiWriter(f)
 
 	// ルーティングの設定
