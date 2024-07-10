@@ -1,0 +1,6 @@
+FROM golang:1.21.6
+RUN apt update && apt install -y git && apt install -y lsof
+WORKDIR /root/src
+COPY ./src /root/src
+COPY ./data /root/data
+CMD [ "go", "run", "main.go" ]

@@ -34,15 +34,19 @@ services:
     depends_on:
       - "mysql"
 
-  # api:
-  #     container_name: guide_api
-  #     # image: golang:1.21.6
-  #     stdin_open: true
-  #     tty: true
-  #     volumes:
-  #       - ./src:/root/src
-  #       - ./data:/root/data
-  #     ports:
-  #       - 8080:8080
-  #     depends_on:
-  #       - "neo4j"
+  api:
+      container_name: guide_api
+      build:
+        context: .
+        dockerfile: ./docker/api/dockerfile
+      stdin_open: true
+      tty: true
+      volumes:
+        - ./log:/root/log
+
+      environment:
+        - GIN_MODE=release
+      ports:
+        - 8080:8080
+      depends_on:
+        - "neo4j"
