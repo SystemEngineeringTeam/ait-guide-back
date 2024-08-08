@@ -1,26 +1,26 @@
 version: "3"
 services:
   mysql:
-    container_name: guide_db
+    container_name: ${MYSQL_CONTAINER_NAME}
     image: mysql:8
     volumes:
       - ./docker/mysql/mysqld_charset.cnf:/etc/mysql/conf.d/my.cnf
     ports:
-      - "3309:3309"
-    expose:
-      - 3309
+      - ${MYSQL_PORT}:3306
     environment:
-      MYSQL_ROOT_PASSWORD: admin
-      MYSQL_DATABASE: aitguide
-      MYSQL_TCP_PORT: 3309
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASS}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASS}
+      MYSQL_DATABASE: ${MYSQL_DB}
+      MYSQL_TCP_PORT: ${MYSQL_PORT}
 
   neo4j:
-    container_name: guide_neo4j
+    container_name: ${NEO4J_CONTAINER_NAME}
     image: neo4j:5.17.0
     restart: always
     ports:
-      - 57474:7474
-      - 7687:7687
+      - ${NEO4J_PORT_1}:7474
+      - ${NEO4J_PORT_2}:7687
     volumes:
       - ./docker/neo4j/volumes/data:/data
       - ./docker/neo4j/volumes/logs:/logs
@@ -28,14 +28,14 @@ services:
       - ./data:/import
       - ./docker/neo4j/volumes/script:/script
     environment:
-      - NEO4J_AUTH=neo4j/madeintokyo
+      - NEO4J_AUTH=${NEO4J_AUTH}
       - EXTENSION_SCRIPT=/script/import_data.sh
       - NEO4J_PLUGINS=["graph-data-science"]
     depends_on:
       - "mysql"
 
   api:
-      container_name: guide_api
+      container_name: ${API_CONTAINER_NAME}
       build:
         context: .
         dockerfile: ./docker/api/dockerfile
@@ -43,10 +43,9 @@ services:
       tty: true
       volumes:
         - ./log:/root/log
-
       environment:
         - GIN_MODE=release
       ports:
-        - 8080:8080
+        - ${API_PORT}:8080
       depends_on:
         - "neo4j"
