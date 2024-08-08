@@ -16,3 +16,5 @@ src/conf/environments/
 server.log
 
 *.png
+
+.env
