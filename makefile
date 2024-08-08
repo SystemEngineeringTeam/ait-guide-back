@@ -27,11 +27,11 @@ restart: down up ## コンテナ再起動
 
 .PHONY: db
 db: ## DBコンテナに入る
-	docker exec -it $(MYSQL_CONTAINER_HOST) mysql -u $(MYSQL_USER) -p $(MYSQL_PASS)
+	docker exec -it $(MYSQL_CONTAINER_NAME) mysql -u $(MYSQL_USER) -p $(MYSQL_PASS)
 
 .PHONY: go
 go: ## goコンテナに入る
-	docker exec -it $(GO_CONTAINER_HOST) /bin/sh
+	docker exec -it $(API_CONTAINER_NAME) /bin/sh
 
 .PHONY: help
 help: ## ヘルプ
