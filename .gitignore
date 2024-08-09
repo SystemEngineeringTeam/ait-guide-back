@@ -1,6 +1,7 @@
 *
 !*/
 !*.*
+!dockerfile
 !makefile
 
 data/done
