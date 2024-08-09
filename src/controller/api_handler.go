@@ -50,6 +50,10 @@ func ApiHandler() {
 		MaxAge: 24 * time.Hour,
 	}))
 
+	r.GET("/", func(c *gin.Context) {
+		c.JSON(200, "This is AIT Guide API")
+		})
+
 	r.GET("api/get/route", func(c *gin.Context) {
 		lat := c.Query("lat")
 		lng := c.Query("lng")
