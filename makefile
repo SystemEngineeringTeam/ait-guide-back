@@ -1,5 +1,4 @@
 .DEFAULT_GOAL := help
--include .env
 
 .PHONY: build
 build:## コンテナビルド
@@ -27,7 +26,7 @@ logs:## コンテナログ表示
 
 .PHONY: db
 db: ## DBコンテナに入る
-	docker exec -it $(MYSQL_CONTAINER_NAME) mysql -u $(MYSQL_USER) -p $(MYSQL_PASS)
+	set -a && source .env && set +a && docker exec -it $${MYSQL_CONTAINER_NAME} mysql -u$${MYSQL_USER} -p$${MYSQL_PASS}
 
 .PHONY: go
 go: ## goコンテナに入る
