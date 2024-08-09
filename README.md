@@ -46,9 +46,14 @@
 ### 1.環境構築
 
 Dockerをインストールする
+
+#### macOS向け
+
 [Docker Desktop の Mac へのインストール](https://matsuand.github.io/docs.docker.jp.onthefly/desktop/mac/install/)\
 or\
 `brew install --cask docker`
+
+#### Ubuntu向け
 
 [Docker Engine インストール（Ubuntu 向け）](https://matsuand.github.io/docs.docker.jp.onthefly/engine/install/ubuntu/)
 
