@@ -4,26 +4,26 @@
 .PHONY: build
 build:## コンテナビルド
 	# コンテナビルド中
-	@docker compose build
+	@docker-compose build
 
 .PHONY: up
 up: ## コンテナ起動
 	# コンテナ起動中
-	@docker compose up -d
+	@docker-compose up -d
 
 .PHONY: build-up
 build-up: build up ## コンテナビルド＆起動
 
 .PHONY: down
 down: ## コンテナ停止
-	docker compose down
+	@docker-compose down
 
 .PHONY: restart
 restart: down up ## コンテナ再起動
 
 .PHONY: logs
 	logs:
-	docker compose logs -f
+	@docker-compose logs -f
 
 .PHONY: db
 db: ## DBコンテナに入る
@@ -31,7 +31,7 @@ db: ## DBコンテナに入る
 
 .PHONY: go
 go: ## goコンテナに入る
-	docker exec -it $(API_CONTAINER_NAME) /bin/sh
+	docker exec -it $(API_CONTAINER_NAME) /bin/bash
 
 .PHONY: help
 help: ## ヘルプ
