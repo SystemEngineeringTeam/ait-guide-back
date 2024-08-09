@@ -22,7 +22,7 @@ down: ## コンテナ停止
 restart: down up ## コンテナ再起動
 
 .PHONY: logs
-	logs:
+logs:## コンテナログ表示
 	@docker-compose logs -f
 
 .PHONY: db
