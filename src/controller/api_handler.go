@@ -27,6 +27,9 @@ func ApiHandler() {
 	r.Use(cors.New(cors.Config{
 		// アクセスを許可したいアクセス元
 		AllowOrigins: []string{
+			"*",
+			"https://v2.ait-guide.sysken.net",
+			"https://v1.ait-guide.sysken.net",
 			"https://ait-guide.sysken.net",
 			"http://localhost:3000",
 		},
